@@ -1,0 +1,14 @@
+
+Hope you enjoy your new logo, here are the people that
+made your beautiful logo happen :)
+font name: Archivo-SemiBoldItalic
+font link: https://fonts.google.com/specimen/Archivo
+font author: Omnibus-Type
+font author site: http://www.omnibus-type.com/
+Slogan Font: Fanwood Text.otf
+
+icon designer: Zahi Asa
+icon designer link: /izzako
+        
+{"bg-gradient-0":"#20484F","bg-gradient-1":"#4E9BAB","icon":"#ffffff","font":"#ffffff","slogan":"#ffffff"}
+      
