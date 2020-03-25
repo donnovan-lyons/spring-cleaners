@@ -1,0 +1,18 @@
+<h2 class="">Log into your account</h2>
+<div class="">
+  <%= form_with url: sessions_path, method: "post", id: "column" do |f| %>
+    <%= f.label :email %>
+    <%= f.email_field :email, :placeholder => 'E-mail address' %>
+    <%= f.label :password %>
+    <%= f.password_field :password, :placeholder => 'Password' %>
+    <%= f.submit "Log In" %>
+  <% end %>  
+  <div class="">
+    <div class="">
+      or sign in using
+    </div>
+    <div class="ui mini images">
+      <a href="#"><%= image_tag 'facebook-icon.svg', alt: 'Facebook icon', class: 'ui image' %></a> <a href="#"><%= image_tag 'twitter-icon.svg', alt: 'Twitter icon', class: 'ui image' %></a> <a href="#"><%= image_tag 'google-icon.png', alt: 'Google icon', class: 'ui image' %></a> <a href="#"><%= image_tag 'amazon-icon.png', alt: 'Amazon icon', class: 'ui image' %></a>
+    </div>
+  </div>
+</div>

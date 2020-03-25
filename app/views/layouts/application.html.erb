@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <%= favicon_link_tag 'spring-cleaners-logos/profile.png' %>
     <title>Spring Cleaners</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -10,61 +11,8 @@
   </head>
 
   <body>
-    <div class="ui secondary menu">
-      <a class="item" href="/">
-        <%= image_tag 'spring-cleaners-logos/cover.png', alt: 'Logo', class: 'image' %>
-      </a>
-      <% if logged_in? %>
-
-      <div class="right menu">
-        <a class="item" href="/">
-          <i class="home icon"></i>
-          Home
-        </a>
-        <a class="item">
-          <i class="user icon"></i>
-          Profile
-        </a>
-        <a class="item">
-          <i class="envelope icon"></i>
-          Messages
-        </a>
-        <a class="ui item" href="/logout">
-          <i class="sign out alternate icon"></i>
-          Logout
-        </a>
-      </div>
-      <% else %>
-      <div class="right menu">
-        <a class="ui item" href="/signup">
-          <div class="ui teal button">
-            Sign Up
-          </div>
-        </a>
-        <a class="ui item" href="/login">
-          <div class="ui button">
-            Log In
-          </div>
-        </a>
-      </div>
-      <% end %>
-    </div>
+ 
     <%= yield %>
 
-    <style type="text/css">
-      body > div {
-        background-color: #DADADA;
-      }
-      body > .grid {
-        height: 100%;
-      }
-      .image {
-        margin-top: -100px;
-        <!-- border-radius: 50%; -->
-      }
-      .column {
-        max-width: 450px;
-      }
-    </style>
   </body>
 </html>
