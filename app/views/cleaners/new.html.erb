@@ -24,9 +24,12 @@
 
   <% end %>
 
-  <%= f.fields_for :institutions, @cleaner.institutions.build do |institutions_fields| %>
-    <%= institutions_fields.text_field :name %>
-  <% end %>
+  <%= f.text_field :institution_name, list: "institutions_autocomplete" %>
+  <datalist id="institutions_autocomplete">
+    <% Institution.all.each do |yeshiva| %>
+      <option value="<%= yeshiva.name %>">
+    <% end %>
+  </datalist>
 
   <%= f.submit "Submit" %>
 <% end %>
