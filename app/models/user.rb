@@ -4,8 +4,8 @@ class User < ApplicationRecord
 
     has_secure_password
 
-    has_many :cleaners
-    has_many :customers
+    has_one :cleaner
+    has_one :customer
 
     SUB_CLASSES = ["Cleaner","Customer"]
 
