@@ -1,0 +1,34 @@
+<% content_for :title, "Sign Up" %>
+
+<%= form_with model: @cleaner, local: true do |f| %>
+
+  <%= f.label :first_name %>
+  <%= f.text_field :first_name, :placeholder => 'First name' %>
+
+  <%= f.label :last_name %>
+  <%= f.text_field :last_name, :placeholder => 'Last name' %><br>
+
+  <%= f.label :phone %>
+  <%= f.telephone_field :phone, :placeholder => 'Phone' %><br>
+
+  <%= f.label :whatsapp %>
+  <%= f.telephone_field :whatsapp, :placeholder => 'Whatsapp' %><br>
+
+  <%= f.fields_for :addresses do |addr| %>
+
+     <%= addr.label :neighborhood %>
+     <%= addr.text_field :neighborhood %><br>
+
+     <%= addr.label :city %>
+     <%= addr.text_field :city %><br>
+
+  <% end %>
+
+  <%= f.fields_for :institutions, @cleaner.institutions.build do |institutions_fields| %>
+    <%= institutions_fields.text_field :name %>
+  <% end %>
+
+  <%= f.submit "Submit" %>
+<% end %>
+
+Page 2 of 2

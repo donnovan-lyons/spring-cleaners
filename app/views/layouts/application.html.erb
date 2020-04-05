@@ -11,7 +11,26 @@
   </head>
 
   <body>
- 
+    <div class="ui secondary  menu">
+      <a class="item" href="/">
+        <i class="home icon"></i>
+        Home
+      </a>
+      <div class="right menu">
+        <a class="item">
+          <i class="envelope icon"></i>
+          Messages
+        </a>
+        <a class="item">
+          <i class="user circle icon"></i>
+          My Account
+        </a>
+        <a class="ui item" href="/logout">
+          Logout
+        </a>
+      </div>
+    </div>
+
     <%= yield %>
 
   </body>

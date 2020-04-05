@@ -1,0 +1,30 @@
+<% content_for :title, "Sign Up" %>
+
+<%= form_with model: @customer, local: true do |f| %>
+
+  <%= f.label :first_name %>
+  <%= f.text_field :first_name, :placeholder => 'First name' %>
+
+  <%= f.label :last_name %>
+  <%= f.text_field :last_name, :placeholder => 'Last name' %><br>
+
+  <%= f.label :phone %>
+  <%= f.telephone_field :phone, :placeholder => 'Phone' %><br>
+
+  <%= f.fields_for :addresses do |addr| %>
+
+     <%= addr.label :street_address %>
+     <%= addr.text_field :street_address %><br>
+
+     <%= addr.label :neighborhood %>
+     <%= addr.text_field :neighborhood %><br>
+
+     <%= addr.label :city %>
+     <%= addr.text_field :city %><br>
+
+  <% end %>
+
+  <%= f.submit "Sign Up" %>
+<% end %>
+
+Page 2 of 2
