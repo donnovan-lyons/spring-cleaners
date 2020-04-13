@@ -16,3 +16,6 @@
 //= require_tree .
 // Loads all Semantic javascripts
 //= require semantic-ui
+// Load jquery
+// = require jquery
+// = require jquery_ujs
