@@ -1,4 +1,4 @@
-<% content_for :title, "Sign Up" %>
+<%= title("Sign Up") %>
 <% if @user.errors.any? %>
   <div id="error_explanation">
     <h2>
@@ -37,6 +37,8 @@ Page 1 of 2
   </div>
 
   <div class="ui mini images">
-    <a href="#"><%= image_tag 'facebook-icon.svg', alt: 'Facebook icon', class: 'ui image' %><a href="#"><%= image_tag 'google-icon.png', alt: 'Google icon', class: 'ui image' %>
+    <a href="#"><%= image_tag 'facebook-icon.svg', alt: 'Facebook icon', class: 'ui image' %></a> <a href="#"><%= image_tag 'google-icon.png', alt: 'Google icon', class: 'ui image' %></a> <a href="#"><%= image_tag 'amazon-icon.png', alt: 'Amazon icon', class: 'ui image' %></a>
   </div>
 </div>
+
+<a href="/login">Already signed up? Login to Spring Cleaners</a>

@@ -2,7 +2,7 @@
 <html>
   <head>
     <%= favicon_link_tag 'spring-cleaners-logos/profile.png' %>
-    <title>Spring Cleaners</title>
+    <title>Spring Cleaners - <%= yield(:title) %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -13,8 +13,8 @@
   <body>
     <div class="ui secondary  menu">
       <a class="item" href="/">
-        <i class="home icon"></i>
-        Home
+        <%= image_tag 'spring-cleaners-logos/profile.png', alt: 'Logo', class: 'image' %>
+        Spring Cleaners
       </a>
       <div class="right menu">
         <a class="item">
@@ -22,7 +22,7 @@
           Messages
         </a>
         <a class="item">
-          <i class="user circle icon"></i>
+          <i class="user icon"></i>
           My Account
         </a>
         <a class="ui item" href="/logout">
@@ -30,6 +30,8 @@
         </a>
       </div>
     </div>
+
+    <h1><%= yield(:title) %><h1>
 
     <%= yield %>
 

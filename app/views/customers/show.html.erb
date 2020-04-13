@@ -1,11 +1,11 @@
-<div class="">
-  <button class="fluid ui button">Schedule a Cleaner</button>
+<div>
+  <%= link_to "Schedule a Cleaner", new_customer_appointment_path(@customer), :class => "fluid ui button"  %>
 </div>
 
-<div class="">
-  <button class="fluid ui button">View Scheduled Cleaners</button>
+<div>
+  <%= link_to "View Scheduled Cleaners", customer_appointments_path(@customer), :class => "fluid ui button"  %>
 </div>
 
-<div class="">
-  <button class="fluid ui button">Help</button>
+<div>
+  <a href="" class="fluid ui button">Help</a>
 </div>

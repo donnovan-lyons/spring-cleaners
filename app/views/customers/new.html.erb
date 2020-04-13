@@ -11,7 +11,7 @@
   <%= f.label :phone %>
   <%= f.telephone_field :phone, :placeholder => 'Phone' %><br>
 
-  <%= f.fields_for :addresses do |addr| %>
+  <%= f.fields_for :address do |addr| %>
 
      <%= addr.label :street_address %>
      <%= addr.text_field :street_address %><br>

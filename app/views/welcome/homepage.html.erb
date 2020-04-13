@@ -1,35 +1,56 @@
-<div id="container">  
+<div id="ui placeholder segment">  
+  <div class="ui two column very relaxed stackable grid">
 
-  <div id="ad-half">
-  </div>
+    <div class="column">
+      <%= image_tag 'spring-cleaners-logos/default.png', alt: 'default', class: 'ui fluid image' %>
+    </div>
 
-  <div id="login-half">
-      <div id="login-section">
-          <div id="form">
-            <%= form_with url: sessions_path, method: "post", html: {class: ""} do |f| %>
-              <%= f.label :email %>
-              <%= f.email_field :email, :placeholder => 'E-mail address' %>
-              <%= f.label :password %>
-              <%= f.password_field :password, :placeholder => 'Password' %>
-              <%= f.submit "Log In", :class => 'ui button' %>
+    <div class="middle aligned column">
+
+        <div id="login-section">
+            <div class="ui form">
+
+              <%= form_with url: sessions_path, method: "post", html: {class: "ui form center"} do |f| %>
+                <div class="two fields">
+                  <div class="field">
+                    <%= f.label :email %>
+                    <%= f.email_field :email, :placeholder => 'E-mail address' %>
+                    <%= f.label :password %>
+                    <%= f.password_field :password, :placeholder => 'Password' %>
+                  </div>
+                 </div> 
+                <div class="ui buttons large">
+                <%= f.submit "Log In", :class => 'ui button' %>
+                <div class="or"></div>
+                <a href="/signup" class="ui teal button">Sign Up</a>
+                </div>
               <% end %>
 
-              <div class="">
+              <div class="ui">
                 or sign in using
+              <button class="ui circular facebook icon button">
+                <i class="facebook icon"></i>
+              </button>
+              <button class="ui circular google plus icon button">
+                <i class="google icon"></i>
+              </button>
+              <button class="ui circular amazon grey icon button">
+                <i class="amazon icon"></i>
+              </button>
               </div>
 
-              <div class="ui mini images">
-                <a href="#"><%= image_tag 'facebook-icon.svg', alt: 'Facebook icon', class: 'ui image' %></a> <a href="#"><%= image_tag 'twitter-icon.svg', alt: 'Twitter icon', class: 'ui image' %></a> <a href="#"><%= image_tag 'google-icon.png', alt: 'Google icon', class: 'ui image' %></a> <a href="#"><%= image_tag 'amazon-icon.png', alt: 'Amazon icon', class: 'ui image' %></a>
-              </div>
+            </div>
+        </div>
 
-          </div>
-      </div>
+        <div class="ui message">
+          <h4>Are you ready for the Spring?</h4>
+            Get a cleaner today.
+          <h3><%= link_to "Sign up", signup_url %> or <%= link_to "Log in", login_url %></h3>
+        </div>
 
-      <div id="signup-or-login">
-        <h4>Are you ready for the Spring?</h4>
-        Get a cleaner today.
-        <h3><%= link_to "Sign up", signup_url %></h3> or <h3><%= link_to "Log in", login_url %></h3>
-      </div>
+
+
+    </div>
+
   </div>
-
 </div>
