@@ -1,10 +1,12 @@
 class CustomersController < ApplicationController
+  skip_before_action :require_login
+
   def new
     @customer = Customer.new
   end
 
   def create
-    @customer = current_user.customer.build(customer_params)
+    @customer = current_user.build_customer(customer_params)
     if @customer.save
       flash[:notice] = "Thanks for signing up!"
       redirect_to customer_path(@customer)
@@ -14,13 +16,13 @@ class CustomersController < ApplicationController
     end
   end
 
+  def show
+    @customer = Customer.find(params[:id])
+  end
+
   private
 
   def customer_params
     params.require(:customer).permit(:first_name, :last_name, :phone, :whatsapp, address: [:street_address, :neighborhood, :city])
-  end
-
-  def require_login
-    return head(:forbidden) unless session.include? :user_id
   end
 end

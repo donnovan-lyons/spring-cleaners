@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  skip_before_action :require_login, except: [:show]
 
   def index
     redirect_to new_user_path
@@ -10,7 +11,6 @@ class UsersController < ApplicationController
   end
 
   def create
-    # raise params.inspect
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
@@ -26,7 +26,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    require_login
     if current_user.sub_class == "Cleaner"
       redirect_to cleaner_path(current_user.cleaner)
     else
@@ -38,9 +37,5 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation, :sub_class)
-  end
-
-  def require_login
-    return head(:forbidden) unless session.include? :user_id
   end
 end

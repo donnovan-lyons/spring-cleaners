@@ -1,13 +1,14 @@
 class CleanersController < ApplicationController
-  before_action :require_login
+  skip_before_action :require_login
 
   def new
-    # raise current_user.inspect
     @cleaner = Cleaner.new
   end
 
   def create
-    @cleaner = current_user.cleaner.build(cleaner_params)
+    @institution = Institution.find_or_create_by(name: params[:cleaner][:institution_name])
+    @cleaner = current_user.build_cleaner(cleaner_params)
+    @cleaner.institution_id = @institution.id
     if @cleaner.save
       flash[:notice] = "Thanks for signing up!"
       redirect_to cleaner_path(@cleaner)
@@ -17,13 +18,14 @@ class CleanersController < ApplicationController
     end
   end
 
+  def show
+    @cleaner = Cleaner.find(params[:id])
+  end
+
   private
 
   def cleaner_params
     params.require(:cleaner).permit(:first_name, :last_name, :phone, :whatsapp, address: [:neighborhood, :city])
   end
 
-  def require_login
-    return head(:forbidden) unless session.include? :user_id
-  end
 end
