@@ -14,8 +14,8 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+// Load jquery
+//= require jquery
+//= require jquery_ujs
 // Loads all Semantic javascripts
 //= require semantic-ui
-// Load jquery
-// = require jquery
-// = require jquery_ujs

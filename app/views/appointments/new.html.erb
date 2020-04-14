@@ -1,5 +1,5 @@
 <%= title("Schedule a Customer") %>
-<div class="ui form">
+<div class="ui form" id= "create_form">
     <%= form_with(model: [@customer, @appointment], local: true) do |f| %>
         <div class="two fields">
         
@@ -17,7 +17,7 @@
             <label>End time</label>
                 <div class="ui calendar" id="time_calendar">
                     <div class="ui input left icon">
-                        <i class="time icon"></i>
+                        <i class="calendar icon"></i>
                         <input type="text" placeholder="Time">
                     </div>
                 </div>
@@ -30,3 +30,10 @@
         <%= f.submit "Submit Cleaning Request", :class => "ui form button" %>
     <% end %>
 </div>
+
+<script>
+
+$('#standard_calendar').calendar();
+$('#time_calendar').calendar({type: 'time'});
+
+</script>
