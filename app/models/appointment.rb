@@ -3,5 +3,7 @@ class Appointment < ApplicationRecord
     belongs_to :cleaner, optional: true
     belongs_to :customer
 
-    TIME_SLOTS = ["9AM - 1PM", "2PM - 6PM"]
+    def self.all_unassigned
+        all.select { |appt| appt.cleaner == nil }
+    end
 end

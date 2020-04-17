@@ -1,10 +1,11 @@
 <%= title("My Cleaning Schedule") %>
-    <table class="ui compact celled definition table">
+<table class="ui compact celled definition table">
     <thead class="full-width">
         <tr>
             <th>Date</th>
             <th>Time Slot</th>
             <th>Details</th>
+            <th>Status</th>
             <th></th>
             <th></th>
         </tr>
@@ -15,9 +16,10 @@
             <td><%= appointment.date %></td>
             <td><%= appointment.time_slot %></td>
             <td><%= appointment.details %></td>
+            <td></td>
             <td><%= link_to "Edit", edit_appointment_path(appointment) %></td>
             <td><%= link_to "Cancel", appointment, method: :delete, data: { confirm: "Are you sure?" } %></td>
         </tr>
     <% end %>
     </tbody>
-    </table>
+</table>

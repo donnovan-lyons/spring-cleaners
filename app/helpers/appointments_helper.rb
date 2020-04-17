@@ -12,12 +12,16 @@ module AppointmentsHelper
     end
 
     def get_date_start(appointment)
-        date = appointment.date.strftime("%B %d, %Y")
-        start_time = appointment.time_slot.split(" - ")[0]
-        "#{date} #{start_time}"
+        if appointment.date && appointment.time_slot
+            date = appointment.date.strftime("%B %d, %Y")
+            start_time = appointment.time_slot.split(" - ")[0]
+            "#{date} #{start_time}"
+        else
+            nil
+        end
     end
 
     def get_end_time(appointment)
-        appointment.time_slot.split(" - ")[1]
+        appointment.time_slot ? appointment.time_slot.split(" - ")[1] : nil
     end
 end

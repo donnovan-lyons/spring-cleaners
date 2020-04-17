@@ -1,33 +1,7 @@
 <%= title("Update Cleaning Request") %>
-<div class="ui form" id= "create_form">
+<div class="ui form">
     <%= form_with(model: [@customer, @appointment], local: true) do |f| %>
-        <div class="two fields">
-        
-            <div class="field">
-                <label>Start date and time</label>
-                <div class="ui calendar" id="standard_calendar">
-                    <div class="ui input left icon">
-                        <i class="calendar icon"></i>
-                        <%= f.text_field :date_start_time, :placeholder => "Date/Time", :value => get_date_start(@appointment) %>
-                    </div>
-                </div>
-            </div>
-
-            <div class="field">
-            <label>End time</label>
-                <div class="ui calendar" id="time_calendar">
-                    <div class="ui input left icon">
-                        <i class=" icon"></i>
-                        <%= f.text_field :end_time, :placeholder => "Time", :value => get_end_time(@appointment) %>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        
-        <%= f.label :details, :class => "" %>
-        <%= f.text_field :details, :class => "" %><br>
-
+        <%= render 'form' , f: f  %>
         <%= f.submit "Update Cleaning Request", :placeholder => 'Write details here...', :class => "ui form button" %>
     <% end %>
 </div>
@@ -38,3 +12,4 @@ $('#standard_calendar').calendar();
 $('#time_calendar').calendar({type: 'time'});
 
 </script>
+<script src=""></script>
