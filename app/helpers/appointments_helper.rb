@@ -1,7 +1,6 @@
 module AppointmentsHelper
 
     def convert(date_time)
-        # byebug
         date = Date.parse(date_time)
         start_time = DateTime.parse(date_time).strftime("%I:%M %p")
         [date, start_time[1..-1]]

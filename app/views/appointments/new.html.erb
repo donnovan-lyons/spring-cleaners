@@ -1,4 +1,4 @@
-<%= title("Schedule a Cleaner") %>
+<%= content_for(:title,"Schedule a Cleaner") %>
 <div class="ui form" id= "create_form">
     <%= form_with(model: [@customer, @appointment], local: true) do |f| %>
         <%= render 'form' , f: f  %>
