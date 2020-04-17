@@ -1,8 +1,5 @@
 class ApplicationController < ActionController::Base
-    # helper_method :current_user
-    # helper_method :logged_in?
     before_action :require_login
-    # helper_method :authorized?(id)
 
   def logged_in?
     !!session[:user_id]

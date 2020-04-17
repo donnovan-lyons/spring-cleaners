@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :cleaners, only: [:new, :create, :show] 
   resources :customers, only: [:new, :create, :show] do
-    resources :appointments
+    resources :appointments, shallow: true
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -33,6 +33,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def my_account
+    
+  end
+
   private
 
   def user_params
