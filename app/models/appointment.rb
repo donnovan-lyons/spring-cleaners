@@ -1,7 +1,10 @@
 class Appointment < ApplicationRecord
     validates :date, :time_slot,  presence: true
+    
     belongs_to :cleaner, optional: true
     belongs_to :customer
+
+    scope :all_pending, -> { where(cleaner_id: nil) }
 
     STATUS = ["Pending","Confirmed", "Completed"]
 
@@ -9,7 +12,4 @@ class Appointment < ApplicationRecord
         "#{customer.address["neighborhood"]}, #{customer.address["city"]}"
     end
 
-    def self.all_pending
-        all.select { |appt| appt.cleaner == nil }
-    end
 end
