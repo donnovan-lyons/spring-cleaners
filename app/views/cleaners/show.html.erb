@@ -1,10 +1,13 @@
 <div>
-  
-  <a href="/cleaners/<%= @cleaner.id %>/appointments/new" class="fluid ui button">Find a Home to Clean</a>
+  <%= link_to "Find a Home to Clean", new_cleaner_appointment_path(@cleaner), :class => "fluid ui button" %>
 </div>
 
 <div>
-  <a href="/cleaners/<%= @cleaner.id %>/appointments" class="fluid ui button">My Cleanings</a>
+  <%= link_to "My Current Jobs", cleaner_appointments_path(@cleaner), :class => "fluid ui button" %>
+</div>
+
+<div>
+  <%= link_to "My Completed Jobs", cleaner_completed_appts_path(@cleaner), :class => "fluid ui button" %>
 </div>
 
 <div>

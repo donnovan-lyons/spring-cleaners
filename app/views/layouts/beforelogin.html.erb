@@ -2,7 +2,13 @@
 <html>
   <head>
     <%= favicon_link_tag 'spring-cleaners-logos/profile.png' %>
-    <title>Spring Cleaners - <%= yield(:title) %></title>
+    <title>
+      <% if content_for?(:title) %>
+        <%= yield(:title) %>
+      <% else %>
+        <%= "Spring Cleaners" %>
+      <% end %>
+    </title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 

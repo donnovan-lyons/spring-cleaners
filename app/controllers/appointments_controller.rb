@@ -44,15 +44,46 @@ class AppointmentsController < ApplicationController
     end
 
     def cleaner_index
-        @cleaner = Cleaner.find(params[:cleaner_id])   
+        @cleaner = Cleaner.find(params[:cleaner_id])
+        @appointments = @cleaner.confirmed_appts
     end
 
     def cleaner_new
         @cleaner = Cleaner.find(params[:cleaner_id])
+        @appointment = @cleaner.appointments.build
+        @appointments = Appointment.all_pending
     end
 
-    def cleaner_edit
+    def cleaner_create
         @cleaner = Cleaner.find(params[:cleaner_id])
+        appointment_ids = params["cleaner"].select{|key, value| value == "1"}.keys
+        appointment_ids.each do |appt_id| 
+            appt = Appointment.find(appt_id)
+            appt.update(cleaner_id: @cleaner.id, status: Appointment::STATUS[1])
+        end
+        redirect_to "/cleaners/#{@cleaner.id}/appointments"
+    end
+
+    def cleaner_update
+        @cleaner = Cleaner.find(params[:cleaner_id])
+        appointment_ids = params["cleaner"].select{|key, value| value == "1"}.keys
+        appointment_ids.each do |appt_id| 
+            appt = Appointment.find(appt_id)
+            appt.update(status: Appointment::STATUS[2])
+        end
+        redirect_to "/cleaners/#{@cleaner.id}/appointments/completed"
+    end
+
+    def cleaner_destroy
+        appt = Appointment.find(params[:id])
+        appt.update(cleaner_id: nil, status: Appointment::STATUS[0])
+        
+        redirect_to "/cleaners/#{current_user.cleaner.id}/appointments"
+    end
+
+    def cleaner_completed
+        @cleaner = Cleaner.find(params[:cleaner_id])
+        @appointments = @cleaner.completed_appts
     end
 
     private

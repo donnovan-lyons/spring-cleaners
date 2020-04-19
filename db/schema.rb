@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_25_191648) do
+ActiveRecord::Schema.define(version: 2020_04_18_185137) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2020_03_25_191648) do
     t.boolean "assigned?", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "status", default: "Pending"
   end
 
   create_table "cleaners", force: :cascade do |t|

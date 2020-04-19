@@ -9,4 +9,12 @@ class Cleaner < ApplicationRecord
     has_many :customers, through: :appointments
 
     delegate :email, :password_digest, :to => :user
+
+    def confirmed_appts
+        appointments.select{|appt| appt.status == Appointment::STATUS[1]}
+    end
+
+    def completed_appts
+        appointments.select{|appt| appt.status == Appointment::STATUS[2]}
+    end
 end
