@@ -23,17 +23,15 @@
         Spring Cleaners
       </a>
       <div class="right menu">
-        <a class="item">
+        <%= link_to conversations_path, class: "item" do %>
           <i class="envelope icon"></i>
           Messages
-        </a>
-        <a class="item">
+        <% end %>
+        <%= link_to "#", class: "item" do %>
           <i class="user icon"></i>
           My Account
-        </a>
-        <a class="ui item" href="/logout">
-          Logout
-        </a>
+        <% end %>
+        <%= link_to "Logout", logout_path, class: "ui item" %>
       </div>
     </div>
 

@@ -2,7 +2,7 @@ class Appointment < ApplicationRecord
     validates :date, :time_slot,  presence: true
     
     belongs_to :cleaner, optional: true
-    belongs_to :customer
+    belongs_to :customer, dependent: :destroy
 
     scope :all_pending, -> { where(cleaner_id: nil) }
 

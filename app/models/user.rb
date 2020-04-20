@@ -6,7 +6,18 @@ class User < ApplicationRecord
 
     has_one :cleaner
     has_one :customer
+    has_many :conversations, :foreign_key => :sender_id
 
     SUB_CLASSES = ["Cleaner","Customer"]
+
+    delegate :first_name, :last_name, :to => :type
+
+    def type
+        if self.sub_class == "Cleaner"
+            cleaner
+        elsif self.sub_class == "Customer"
+            customer
+        end
+    end
 
 end
