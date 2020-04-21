@@ -21,10 +21,10 @@ class User < ApplicationRecord
     end
 
     def unread_count
-        conversations = Conversation.find_by_user(1)
+        conversations = Conversation.find_by_user(id)
         conversations.count do |convo| 
             msg = convo.messages.last
-            if msg.user_id != 1
+            if msg.user_id != id
                 msg.read == false
             end
         end
