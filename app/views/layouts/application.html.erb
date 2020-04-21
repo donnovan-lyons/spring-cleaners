@@ -25,7 +25,7 @@
       <div class="right menu">
         <%= link_to conversations_path, class: "item" do %>
           <i class="envelope icon"></i>
-          Messages
+          Messages <%= "(#{current_user.unread_count} Unread)" if current_user.unread_count > 0 %>
         <% end %>
         <%= link_to "#", class: "item" do %>
           <i class="user icon"></i>
@@ -35,7 +35,7 @@
       </div>
     </div>
 
-    <h1><%= yield(:title) %><h1>
+    <h1><%= yield(:title) %></h1>
 
     <%= yield %>
 

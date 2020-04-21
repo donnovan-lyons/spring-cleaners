@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  skip_before_action :require_login, except: [:destroy]
+  skip_before_action :require_login
 
   def new
     render :layout => "beforelogin"
@@ -21,14 +21,4 @@ class SessionsController < ApplicationController
     redirect_to root_path
   end
 
-  private
-
-  def registration_check
-    if session.include? :user_id
-      user = User.find(:user_id)
-      if !(user.cleaner) || !(user.customer)
-        redirect_to users_path
-      end
-    end
-  end
 end

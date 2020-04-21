@@ -6,8 +6,9 @@
           <th></th>
           <th>Date</th>
           <th>Time Slot</th>
-          <th>Neighborhood, City</th>
+          <th>Address</th>
           <th>Details</th>
+          <th>Customer</th>
           <th></th>
         </tr>
       </thead>
@@ -23,6 +24,7 @@
           <td><%= appointment.time_slot %></td>
           <td><%= appointment.location %></td>
           <td><%= appointment.details %></td>
+          <td><%= link_to appointment.customer.full_name, appointment_path(appointment) %></td>
           <td><%= link_to "Cancel", cleaner_appointment_path(@cleaner, appointment), method: :delete, :disabled => true, data: { confirm: "Are you sure?" } %></td>
         </tr>
         <% end %>
@@ -30,7 +32,7 @@
       <tfoot class="full-width">
         <tr>
           <th></th>
-          <th colspan="5">
+          <th colspan="7">
             <%= f.submit "Mark Complete", :class => 'ui small button' %>
           </th>
         </tr>

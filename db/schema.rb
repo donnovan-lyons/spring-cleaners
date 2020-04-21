@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(version: 2020_04_20_075306) do
     t.text "details"
     t.integer "cleaner_id"
     t.integer "customer_id"
-    t.boolean "assigned?", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "status", default: "Pending"
@@ -43,6 +42,8 @@ ActiveRecord::Schema.define(version: 2020_04_20_075306) do
   create_table "conversations", force: :cascade do |t|
     t.integer "sender_id"
     t.integer "recipient_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "customers", force: :cascade do |t|
@@ -67,6 +68,8 @@ ActiveRecord::Schema.define(version: 2020_04_20_075306) do
     t.bigint "conversation_id"
     t.bigint "user_id"
     t.boolean "read", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["conversation_id"], name: "index_messages_on_conversation_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end

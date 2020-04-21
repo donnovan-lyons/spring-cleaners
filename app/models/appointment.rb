@@ -8,8 +8,7 @@ class Appointment < ApplicationRecord
 
     STATUS = ["Pending","Confirmed", "Completed"]
 
-    def location
-        "#{customer.address["neighborhood"]}, #{customer.address["city"]}"
-    end
+    delegate :location, :to => :customer
+    delegate :full_location, :to => :customer
 
 end

@@ -1,0 +1,19 @@
+<div class="ui centered card">
+  <div class="content">
+    <div class="header"><%= @customer.full_name %></div>
+  </div>
+  <div class="content">
+    <div class="centered"><h4 class="ui sub header">Cleaning Appointment Info</h4></div>
+        Appointment Date: <%= @appointment.date %> <br>
+        Appointment Time: <%= @appointment.time_slot %><br>
+        Appointment Details: <%= @appointment.details %><br>
+    </div>
+    <div class="content">
+    <div><h4 class="ui sub header">Customer Info</h4></div>
+        Phone Number: <%= @customer.phone %><br>
+        Address: <%= @customer.full_location %> <br>
+  </div>
+  <div class="extra content">
+    <%= link_to "Message Customer", new_conversation_path(sender_id: current_user.id, recipient_id: @customer.user.id), :class => "ui button" %>
+  </div>
+</div>

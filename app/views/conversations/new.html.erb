@@ -1,0 +1,10 @@
+<%= form_with(model: @conversation, class: "ui reply form", local:true) do |f| %>
+ <div class="field">
+   <%= f.text_area :body, class: "form-control" %>
+ </div>
+  <%= f.text_field :sender_id, value: current_user.id, type: "hidden" %>
+  <%= f.text_field :recipient_id, value: @conversation.recipient_id, type: "hidden" %>
+ <div>
+   <%= f.submit "Send Message", class: "ui blue labeled submit icon button" %>
+ </div>
+<% end %>

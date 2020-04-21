@@ -9,6 +9,10 @@ class Cleaner < ApplicationRecord
 
     delegate :email, :password_digest, :to => :user
 
+    def full_name
+        "#{first_name} #{last_name}"
+    end
+
     def confirmed_appts
         appointments.select{|appt| appt.status == Appointment::STATUS[1]}
     end

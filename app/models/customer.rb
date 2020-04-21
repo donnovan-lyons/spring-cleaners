@@ -7,4 +7,17 @@ class Customer < ApplicationRecord
     has_many :cleaners, through: :appointments
 
     delegate :email, :password_digest, :to => :user
+
+    def full_name
+        "#{first_name} #{last_name}"
+    end
+
+    def location
+        "#{address["neighborhood"]}, #{address["city"]}"
+    end
+
+    def full_location
+        "#{address["street_address"]}, #{address["neighborhood"]}, #{address["city"]}"
+    end
+
 end

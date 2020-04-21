@@ -2,6 +2,7 @@ class MessagesController < ApplicationController
     before_action :find_conversation
 
     def index
+        #need to fix unread message issue
         @messages = @conversation.messages
 
         if @messages.length > 10

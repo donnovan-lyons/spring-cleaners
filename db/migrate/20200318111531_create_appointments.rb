@@ -6,7 +6,6 @@ class CreateAppointments < ActiveRecord::Migration[5.2]
       t.text :details
       t.integer :cleaner_id
       t.integer :customer_id
-      t.boolean :assigned?, :default => false
 
       t.timestamps
     end

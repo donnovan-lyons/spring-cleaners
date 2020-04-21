@@ -22,4 +22,12 @@
         </tr>
     <% end %>
     </tbody>
+    <tfoot class="full-width">
+    <tr>
+      <th></th>
+      <th colspan="5">
+        <%= link_to "Schedule another Cleaner", new_customer_appointment_path(@customer), :class => "ui button" %>
+      </th>
+    </tr>
+    </tfoot>
 </table>
