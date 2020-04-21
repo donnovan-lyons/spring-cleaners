@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root to: 'welcome#homepage'
   get 'login', to: 'sessions#new'
   get 'signup', to: 'users#new'
+  # get '/auth/facebook/callback' => 'sessions#create_with_facebook'
   post 'login', to: 'sessions#create'
   get 'logout', to: 'sessions#destroy'
   get 'cleaners/:cleaner_id/appointments/new', to: 'appointments#cleaner_new', as: 'new_cleaner_appointment'

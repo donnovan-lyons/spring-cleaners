@@ -28,15 +28,15 @@
 
               <div class="ui">
                 or sign in using
-              <button class="ui circular facebook icon button">
-                <i class="facebook icon"></i>
-              </button>
-              <button class="ui circular google plus icon button">
-                <i class="google icon"></i>
-              </button>
-              <button class="ui circular amazon grey icon button">
-                <i class="amazon icon"></i>
-              </button>
+                <%= link_to "/auth/facebook", class: "ui circular facebook icon button" do %>
+                  <i class="facebook icon"></i>
+                <% end %>
+                <%= link_to "/auth/google", class: "ui circular google plus icon button" do %>
+                  <i class="google icon"></i>
+                <% end %>
+                <%= link_to "/auth/amazon", class: "ui circular amazon grey icon button" do %>
+                  <i class="amazon icon"></i>
+                <% end %>
               </div>
 
             </div>
@@ -48,7 +48,14 @@
           <h3><%= link_to "Sign up", signup_url %> or <%= link_to "Log in", login_url %></h3>
         </div>
 
-
+        <% if session[:user_id] %>
+  <h1><%= @user.name %></h1>
+  <h2>Email: <%= @user.email %></h2>
+  <h2>Facebook UID: <%= @user.uid %></h2>
+  <img src="<%= @user.image %>">
+<% else %>
+  <%= link_to('Log in with Facebook!', '/auth/facebook') %>
+<% end %>
 
     </div>
 
