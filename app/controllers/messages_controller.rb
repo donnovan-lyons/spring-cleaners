@@ -2,9 +2,7 @@ class MessagesController < ApplicationController
     before_action :find_conversation
 
     def index
-        #need to fix unread message issue
         @messages = @conversation.messages
-
         if @messages.length > 10
             @over_ten = true
             @messages = @messages[-10..-1]
@@ -15,7 +13,9 @@ class MessagesController < ApplicationController
         end
         if @messages.last
             if @messages.last.user_id != current_user.id
-                @messages.last.read = true;
+                @messages.last.read = true
+                @messages.last.save
+                # raise @messages.last.inspect
             end
         end
         @message = @conversation.messages.new

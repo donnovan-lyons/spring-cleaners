@@ -7,7 +7,6 @@ class User < ApplicationRecord
     has_one :cleaner
     has_one :customer
     has_many :conversations, :foreign_key => :sender_id
-    has_many :messages, through: :conversations
 
     SUB_CLASSES = ["Cleaner","Customer"]
 
@@ -22,7 +21,13 @@ class User < ApplicationRecord
     end
 
     def unread_count
-        messages.count {|msg| msg.read == false}
+        conversations = Conversation.find_by_user(1)
+        conversations.count do |convo| 
+            msg = convo.messages.last
+            if msg.user_id != 1
+                msg.read == false
+            end
+        end
     end
 
 end
