@@ -1,1 +1,7 @@
 <%= title("My Account") %>
+
+<h2 class="ui center aligned teal header">
+  <div class="content">
+    Send message to <%= User.find(@conversation.recipient_id).full_name %>
+  </div>
+</h2>
