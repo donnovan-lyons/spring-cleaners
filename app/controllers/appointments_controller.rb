@@ -61,12 +61,18 @@ class AppointmentsController < ApplicationController
 
     def cleaner_create
         @cleaner = Cleaner.find(params[:cleaner_id])
-        appointment_ids = params["cleaner"].select{|key, value| value == "1"}.keys
-        appointment_ids.each do |appt_id| 
-            appt = Appointment.find(appt_id)
-            appt.update(cleaner_id: @cleaner.id, status: Appointment::STATUS[1])
+        if params["cleaner"]
+            appointment_ids = params["cleaner"].select{|key, value| value == "1"}.keys
+            appointment_ids.each do |appt_id| 
+                appt = Appointment.find(appt_id)
+                appt.update(cleaner_id: @cleaner.id, status: Appointment::STATUS[1])
+            end
+            redirect_to "/cleaners/#{@cleaner.id}/appointments"
+        else
+            @appointment = @cleaner.appointments.build
+            @appointments = Appointment.all_pending
+            render :cleaner_new
         end
-        redirect_to "/cleaners/#{@cleaner.id}/appointments"
     end
 
     def cleaner_update

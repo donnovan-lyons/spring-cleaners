@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       redirect_to user_path(current_user)
     else
       flash[:alert] = "Username/password combination is invalid"
-      render :new
+      render :new, :layout => "beforelogin"
     end
   end
 

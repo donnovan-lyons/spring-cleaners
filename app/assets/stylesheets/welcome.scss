@@ -4,12 +4,18 @@
 
 body.welcome {
 
-    // .column {
-    //     max-width: 450px;
-    // }
-    
-    // body > .grid {
-    //     height: 100%;
-    // }
+    div.form {
+        margin: auto;
+        max-width: 350px;
+        text-align: center;
+    }
+
+    .grid {
+        height: 100%;
+    }
+
+    #buttons {
+        
+    }
 
 }

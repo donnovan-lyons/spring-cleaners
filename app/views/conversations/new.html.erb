@@ -1,3 +1,23 @@
+<% if @conversation.errors.any? %>
+<div class="ui error message center">
+  <i class="close icon"></i>
+  <div class="header">
+    There <%= @user.errors.count > 1 ? "are" : "is" %> <%= pluralize(@user.errors.count, "error") %> with your submission
+  </div>
+  <ul class="list">
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<h2 class="ui center aligned teal header">
+  <div class="content">
+    Send message to <%= User.find(@conversation.recipient_id).full_name %>
+  </div>
+</h2>
+
 <%= form_with(model: @conversation, class: "ui reply form", local:true) do |f| %>
  <div class="field">
    <%= f.text_area :body, class: "form-control" %>

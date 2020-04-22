@@ -1,20 +1,17 @@
 <%= title("Sign Up") %>
 <% if @user.errors.any? %>
-  <div id="error_explanation">
-    <h2>
-      <%= pluralize(@user.errors.count, "error") %>
-      prohibited this user from being saved:
-    </h2>
-
-    <ul>
+<div class="ui error message center">
+  <i class="close icon"></i>
+  <div class="header">
+    There <%= @user.errors.count > 1 ? "are" : "is" %> <%= pluralize(@user.errors.count, "error") %> with your submission
+  </div>
+  <ul class="list">
     <% @user.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
     <% end %>
-    </ul>
-  </div>
+  </ul>
+</div>
 <% end %>
-
-<%# ------------------------------------------------------------------------------------------------------- %>
 
 <div class="ui middle aligned center aligned grid">
 
@@ -94,4 +91,3 @@
   </div>
 
 </div>
-<%= controller_name %>

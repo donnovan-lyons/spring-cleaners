@@ -1,3 +1,10 @@
+<% content_for :title, "My Current Jobs" %>
+<h2 class="ui center aligned teal header">
+  <div class="content">
+    My Current Jobs
+  </div>
+</h2>
+
 <div class="ui form">
   <%= form_with(model: @cleaner, url: "/cleaners/#{@cleaner.id}/appointments", method: "patch", local: true) do |f| %>
     <table class="ui compact celled definition table">

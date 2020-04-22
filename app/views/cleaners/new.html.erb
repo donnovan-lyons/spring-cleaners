@@ -1,4 +1,17 @@
 <% content_for :title, "Cleaner Sign Up" %>
+<% if @cleaner.errors.any? %>
+<div class="ui error message center">
+  <i class="close icon"></i>
+  <div class="header">
+    There <%= @user.errors.count > 1 ? "are" : "is" %> <%= pluralize(@user.errors.count, "error") %> with your submission
+  </div>
+  <ul class="list">
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
 
 <div class="ui middle aligned center aligned grid">
 

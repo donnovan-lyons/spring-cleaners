@@ -1,6 +1,26 @@
+<% if @message.errors.any? %>
+<div class="ui error message center">
+  <i class="close icon"></i>
+  <div class="header">
+    There <%= @user.errors.count > 1 ? "are" : "is" %> <%= pluralize(@user.errors.count, "error") %> with your submission
+  </div>
+  <ul class="list">
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
 <h2 class="ui center aligned teal header">
     <div class="content">
-      Messages
+      
+      <% if @conversation.sender_id == current_user.id %>
+        <% recipient = User.find(@conversation.recipient_id) %>
+      <% else %>
+        <% recipient = User.find(@conversation.sender_id) %>
+      <% end %>
+      Messages with <%= recipient.full_name %>
     </div>
 </h2>
 
