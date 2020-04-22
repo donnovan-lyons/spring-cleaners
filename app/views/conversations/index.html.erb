@@ -1,7 +1,14 @@
+<%= title("Messages") %>
+
+
 <div class="ui segment">
-  <%= title("Messages") %>
-  <div class="ui list">
-    <div class="item">
+  <h2 class="ui center aligned teal header">
+    <div class="content">
+      Conversations
+    </div>
+  </h2>
+  <div class="ui ">
+    <div class="ui message">
       <% @conversations.each do |conversation| %>
         <% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
           <% if conversation.sender_id == current_user.id %>
@@ -9,7 +16,9 @@
           <% else %>
             <% recipient = User.find(conversation.sender_id) %>
           <% end %>
-          <%= link_to recipient.full_name, conversation_messages_path(conversation) %>
+          <%= link_to conversation_messages_path(conversation), :class => "ui" do %> 
+            <div class="header"><%= recipient.full_name %></div><p><%= conversation.messages.last.body %></p>
+          <% end %> 
         <% end %>
       <% end %>
     </div>
@@ -17,17 +26,20 @@
 </div>
 <div class="ui segment">
   <% if current_user.sub_class == "Cleaner" %>
-    <h3>My Customers</h3>
+    <h3 class="ui center aligned teal header">My Customers</h3>
   <% else %>
-    <h3>My Cleaners</h3>
+    <h3 class="ui center aligned teal header">My Cleaners</h3>
   <% end %>
-  <div class="ui list">
-    <% @users.each do |user| %>
-      <% if user.id != current_user.id %>
-        <div class="item">
-          <%= user.full_name %> <%= link_to 'Contact', new_conversation_path(sender_id: current_user.id, recipient_id: user.id) %>
-        </div>
-      <% end %>
+    <div class="ui cards">
+      <% @users.each do |user| %>
+        <% if user.id != current_user.id %>
+          <div class="card">
+            <div class="content"><div class="header"><%= user.full_name %></div></div>
+            <div class="extra content">
+              <%= link_to 'Message', new_conversation_path(sender_id: current_user.id, recipient_id: user.id), :class => "ui button" %> 
+            </div>
+          </div>
+        <% end %>
+    </div>
     <% end %>
-  </div>
 </div>

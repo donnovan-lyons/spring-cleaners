@@ -1,63 +1,56 @@
-<div id="ui placeholder segment">  
-  <div class="ui two column very relaxed stackable grid">
+<div class="ui two column very relaxed stackable grid">
 
-    <div class="column">
-      <%= image_tag 'spring-cleaners-logos/default.png', alt: 'default', class: 'ui fluid image' %>
-    </div>
-
-    <div class="middle aligned column">
-
-        <div id="login-section">
-            <div class="ui form">
-
-              <%= form_with url: sessions_path, method: "post", html: {class: "ui form center"} do |f| %>
-                <div class="two fields">
-                  <div class="field">
-                    <%= f.label :email %>
-                    <%= f.email_field :email, :placeholder => 'E-mail address' %>
-                    <%= f.label :password %>
-                    <%= f.password_field :password, :placeholder => 'Password' %>
-                  </div>
-                 </div> 
-                <div class="ui buttons large">
-                <%= f.submit "Log In", :class => 'ui button' %>
-                <div class="or"></div>
-                <a href="/signup" class="ui teal button">Sign Up</a>
-                </div>
-              <% end %>
-
-              <div class="ui">
-                or sign in using
-                <%= link_to "/auth/facebook", class: "ui circular facebook icon button" do %>
-                  <i class="facebook icon"></i>
-                <% end %>
-                <%= link_to "/auth/google", class: "ui circular google plus icon button" do %>
-                  <i class="google icon"></i>
-                <% end %>
-                <%= link_to "/auth/amazon", class: "ui circular amazon grey icon button" do %>
-                  <i class="amazon icon"></i>
-                <% end %>
-              </div>
-
-            </div>
-        </div>
-
-        <div class="ui message">
-          <h4>Are you ready for the Spring?</h4>
-            Get a cleaner today.
-          <h3><%= link_to "Sign up", signup_url %> or <%= link_to "Log in", login_url %></h3>
-        </div>
-
-        <% if session[:user_id] %>
-  <h1><%= @user.name %></h1>
-  <h2>Email: <%= @user.email %></h2>
-  <h2>Facebook UID: <%= @user.uid %></h2>
-  <img src="<%= @user.image %>">
-<% else %>
-  <%= link_to('Log in with Facebook!', '/auth/facebook') %>
-<% end %>
-
-    </div>
-
+  <div class="column">
+    <%= image_tag 'spring-cleaners-logos/default.png', alt: 'default', class: 'ui fluid image' %>
   </div>
+
+  <div class="middle aligned column">
+
+    <%= form_with url: sessions_path, method: "post", html: {class: "ui form"} do |f| %>
+    
+      <div class="two fields">
+        <div class="field">
+          <%= f.label :email %>
+          <%= f.email_field :email, :placeholder => 'E-mail address' %>
+          <%= f.label :password %>
+          <%= f.password_field :password, :placeholder => 'Password' %>
+        </div>
+      </div> 
+
+      <div class="ui buttons large">
+        <%= f.submit "Log In", :class => 'ui button' %>
+        <div class="or"></div>
+        <%= link_to "Sign Up", signup_path, :class => "ui teal button" %>
+      </div>
+
+      <div class="ui error message"></div>
+
+      <div class="ui">
+        
+        or sign up using  
+
+        <%= link_to "/auth/facebook", class: "ui circular facebook icon button" do %> 
+          <i class="facebook icon"></i>  
+        <% end %> 
+        <%= link_to "/auth/google", class: "ui circular google plus icon button" do %> 
+          <i class="google icon"></i>  
+        <% end %> 
+        <%= link_to "/auth/amazon", class: "ui circular amazon grey icon button" do %> 
+          <i class="amazon icon"></i>  
+        <% end %>
+
+      </div>
+
+    <% end %>
+
+    <div class="ui message">
+      <h4>Are you ready for the Spring?</h4>
+      Get a cleaner today.
+      <h3><%= link_to "Sign up", signup_url %> or <%= link_to "Log in", login_url %></h3>
+    </div>
+    
+  </div>
+
 </div>
+
+<%= controller_name.underscore %>

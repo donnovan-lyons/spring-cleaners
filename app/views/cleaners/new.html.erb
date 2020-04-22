@@ -1,38 +1,85 @@
-<% content_for :title, "Sign Up" %>
+<% content_for :title, "Cleaner Sign Up" %>
 
-<%= form_with model: @cleaner, local: true do |f| %>
+<div class="ui middle aligned center aligned grid">
 
-  <%= f.label :first_name %>
-  <%= f.text_field :first_name, :placeholder => 'First name' %>
+  <div class="column">
+    
 
-  <%= f.label :last_name %>
-  <%= f.text_field :last_name, :placeholder => 'Last name' %><br>
+    <h2 class="ui teal image header">
+      <%= image_tag 'spring-cleaners-logos/profile.png', alt: 'default', class: 'ui fluid image' %>
+      <div class="content">
+        Cleaner Information
+      </div>
+    </h2>
+    
+    <%= form_with model: @cleaner, class: "ui form", local: true do |f| %>
 
-  <%= f.label :phone %>
-  <%= f.telephone_field :phone, :placeholder => 'Phone' %><br>
+      <div class="ui segment">
 
-  <%= f.label :whatsapp %>
-  <%= f.telephone_field :whatsapp, :placeholder => 'Whatsapp' %><br>
+        <div class="two fields">
 
-  <%= f.fields_for :address do |addr| %>
+          <%= f.label :name %>
+          
+          <div class="field">
+            <%= f.text_field :first_name, :placeholder => 'First name' %>
+          </div>
 
-     <%= addr.label :neighborhood %>
-     <%= addr.text_field :neighborhood %><br>
+          <div class="field">
+            <%= f.text_field :last_name, :placeholder => 'Last name' %>
+          </div>
 
-     <%= addr.label :city %>
-     <%= addr.text_field :city %><br>
+        </div>
 
-  <% end %>
+        <div>
+          <%= f.label :phone %>
+          <%= f.telephone_field :phone, :placeholder => 'Phone' %>
+        </div>
 
-  <%= f.label :institution_name %>
-  <%= f.text_field :institution_name, list: "institutions_autocomplete" %>
-  <datalist id="institutions_autocomplete">
-    <% Institution.all.each do |yeshiva| %>
-      <option value="<%= yeshiva.name %>">
+        <div>
+          <%= f.label :whatsapp %>
+          <%= f.telephone_field :whatsapp, :placeholder => 'Whatsapp' %>
+        </div>
+
+        <div class="two fields">
+
+          <%= f.fields_for :address do |addr| %>
+          
+            <%= addr.label :neighborhood %>
+            <div class="field">
+              <%= addr.text_field :neighborhood %>
+            </div>
+            
+            <%= addr.label :city %>
+            <div class="field">
+              <%= addr.text_field :city %>
+            </div>
+
+          <% end %>
+
+        </div>
+
+        <%= f.label :institution_name %>
+
+        <div class="field">
+          
+          <%= f.text_field :institution_name, list: "institutions_autocomplete" %>
+          <datalist id="institutions_autocomplete">
+            <% Institution.all.each do |yeshiva| %>
+              <option value="<%= yeshiva.name %>">
+            <% end %>
+          </datalist>
+
+        </div>
+
+        <%= f.submit "Submit", :class => "ui fluid large teal submit button" %>
+      </div>
+
+      <div class="ui error message"></div>
+      
+      <div class="ui segment">Part 2 of 2</div>
+
     <% end %>
-  </datalist>
 
-  <%= f.submit "Submit" %>
-<% end %>
+  </div>
 
-Page 2 of 2
+</div>

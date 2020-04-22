@@ -14,31 +14,84 @@
   </div>
 <% end %>
 
-<%= form_with model: @user, local: true do |f| %>
+<%# ------------------------------------------------------------------------------------------------------- %>
 
-  <%= f.label :email %>
-  <%= f.email_field :email, :placeholder => 'E-mail address' %><br>
+<div class="ui middle aligned center aligned grid">
 
-  <%= f.label :password %>
-  <%= f.password_field :password, :placeholder => 'Password' %>
+  <div class="column">
 
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation, :placeholder => 'Password confirmation' %><br>
+    <h2 class="ui teal image header">
+      <%= image_tag 'spring-cleaners-logos/profile.png', alt: 'default', class: 'ui fluid image' %>
+      <div class="content">
+        Sign Up
+      </div>
+    </h2>
 
-  <label>Are you a cleaner or customer?</label>
-  <%= f.select :sub_class, User::SUB_CLASSES, include_blank: true %><br>
+    <%= form_with model: @user, class: "ui large form", local: true do |f| %>
 
-  <%= f.submit "Next" %>
-<% end %>
-Page 1 of 2
-<div>
-  <div>
-    or sign up using
+      <div class="ui stacked segment">
+
+        <div class="field">
+          <%= f.label :email %>
+          <div class="ui left icon input">
+            <i class="user icon"></i>
+            <%= f.email_field :email, :placeholder => 'E-mail address' %>
+          </div>
+        </div>
+
+        <div class="field">
+          <%= f.label :password %>
+          <div class="ui left icon input">
+            <i class="lock icon"></i>
+            <%= f.password_field :password, :placeholder => 'Password' %>
+          </div>
+        </div>
+
+        <div class="field">
+          <%= f.label :password_confirmation %>
+          <div class="ui left icon input">
+            <i class="lock icon"></i>
+            <%= f.password_field :password_confirmation, :placeholder => 'Password confirmation' %>
+          </div>
+        </div>
+
+        <div class="field">
+          <%= f.label "Are you a cleaner or customer?" %>
+          <div class="ui left icon input">
+            <%= f.select :sub_class, User::SUB_CLASSES, :class => "ui fluid dropdown",include_blank: true %>
+          </div>
+        </div>
+        
+        <%= f.submit "Next", :class => "ui large teal submit button" %>
+
+      </div>
+
+      <div class="ui error message"></div>
+      
+      <div class="ui segment">Part 1 of 2</div>
+
+      <div class="ui">
+        
+        or sign up using  
+
+        <%= link_to "/auth/facebook", class: "ui circular facebook icon button" do %> 
+          <i class="facebook icon"></i>  
+        <% end %> 
+        <%= link_to "/auth/google", class: "ui circular google plus icon button" do %> 
+          <i class="google icon"></i>  
+        <% end %> 
+        <%= link_to "/auth/amazon", class: "ui circular amazon grey icon button" do %> 
+          <i class="amazon icon"></i>  
+        <% end %>
+
+      </div>
+    <% end %>
+
+    <div class="ui message">
+      Already signed up? <a href="/login">Log In</a> to Spring Cleaners
+    </div>
+
   </div>
 
-  <div class="ui mini images">
-    <a href="#"><%= image_tag 'facebook-icon.svg', alt: 'Facebook icon', class: 'ui image' %></a> <a href="#"><%= image_tag 'google-icon.png', alt: 'Google icon', class: 'ui image' %></a> <a href="#"><%= image_tag 'amazon-icon.png', alt: 'Amazon icon', class: 'ui image' %></a>
-  </div>
 </div>
-
-<a href="/login">Already signed up? Login to Spring Cleaners</a>
+<%= controller_name %>
