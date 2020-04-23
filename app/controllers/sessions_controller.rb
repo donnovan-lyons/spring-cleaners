@@ -21,12 +21,12 @@ class SessionsController < ApplicationController
     redirect_to root_path
   end
 
-  def omniauthgoogle
+  def omniauth
     if user = User.from_omniauth(auth)
       session[:user_id] = user.id
       redirect_to user_path(current_user)
     else
-      redirect_to new_with_omniauth_path(email: auth.info.email, first_name: auth.info.first_name)
+      redirect_to new_with_omniauth_path(email: auth.info.email, name: auth.info.name)
     end
   end
 

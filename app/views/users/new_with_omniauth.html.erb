@@ -27,7 +27,7 @@
     <%= form_with model: @user, url: oauth_users_path, class: "ui large form", local: true do |f| %>
 
       <div class="ui stacked segment">
-        <%= "Welcome #{@first_name}."%>
+        <%= "Welcome #{@name}."%>
         <%= f.text_field :email, value: @user.email, type: "hidden" %>
 
         <div class="field">

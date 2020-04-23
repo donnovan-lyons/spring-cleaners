@@ -40,7 +40,6 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
-# gem 'omniauth-amazon'
 
 # Use Fomantic UI, converted to SASS, for development framework for Frontend
 gem 'fomantic-ui-sass'

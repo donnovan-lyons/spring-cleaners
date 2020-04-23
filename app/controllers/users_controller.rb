@@ -38,14 +38,12 @@ class UsersController < ApplicationController
   end
 
   def new_with_omniauth
-    # raise params.inspect
     @user = User.new(email: params[:email])
-    @first_name = params[:first_name]
+    @name = params[:name]
     render :layout => "beforelogin"
   end
 
   def create_with_omniauth
-    # raise params.inspect
     @user = User.new(email: params[:user][:email], password: SecureRandom.hex, sub_class: params[:user][:sub_class])
     if @user.save
       session[:user_id] = @user.id
