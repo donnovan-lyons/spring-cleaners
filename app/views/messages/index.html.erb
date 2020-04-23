@@ -2,10 +2,10 @@
 <div class="ui error message center">
   <i class="close icon"></i>
   <div class="header">
-    There <%= @user.errors.count > 1 ? "are" : "is" %> <%= pluralize(@user.errors.count, "error") %> with your submission
+    There <%= @message.errors.count > 1 ? "are" : "is" %> <%= pluralize(@message.errors.count, "error") %> with your submission
   </div>
   <ul class="list">
-    <% @user.errors.full_messages.each do |msg| %>
+    <% @message.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
     <% end %>
   </ul>

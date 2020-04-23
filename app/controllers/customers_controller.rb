@@ -5,14 +5,18 @@ class CustomersController < ApplicationController
     @customer = Customer.new
   end
 
+  def index
+    redirect_to new_customer_path
+  end
+
   def create
     @customer = current_user.build_customer(customer_params)
     if @customer.save
       flash[:notice] = "Thanks for signing up!"
       redirect_to customer_path(@customer)
     else
-      render :new
       flash[:alert] = "Your registration could not be completed"
+      render :new
     end
   end
 

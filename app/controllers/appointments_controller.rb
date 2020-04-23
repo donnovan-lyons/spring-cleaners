@@ -8,13 +8,18 @@ class AppointmentsController < ApplicationController
 
     def create
         @customer = Customer.find(params[:customer_id])
-        date_time = convert(appointment_params[:date_start_time])
-        times = time_slot(date_time[1], appointment_params[:end_time])
-        @appointment = @customer.appointments.build(details: appointment_params[:details], time_slot: times, date: date_time[0])
-        if @appointment.save
-            redirect_to customer_appointments_path(@customer)
-        else
+        if appointment_params[:date_start_time].empty? || appointment_params[:date_start_time].empty?
+            @appointment = @customer.appointments.create(details: appointment_params[:details])
             render :new
+        else
+            date_time = convert(appointment_params[:date_start_time])
+            times = time_slot(date_time[1], appointment_params[:end_time])
+            @appointment = @customer.appointments.build(details: appointment_params[:details], time_slot: times, date: date_time[0])
+            if @appointment.save
+                redirect_to customer_appointments_path(@customer)
+            else
+                render :new
+            end
         end
     end
 
@@ -61,7 +66,7 @@ class AppointmentsController < ApplicationController
 
     def cleaner_create
         @cleaner = Cleaner.find(params[:cleaner_id])
-        if params["cleaner"]
+        if params["cleaner"] && params["cleaner"].values.any? {|value| value == "1"}
             appointment_ids = params["cleaner"].select{|key, value| value == "1"}.keys
             appointment_ids.each do |appt_id| 
                 appt = Appointment.find(appt_id)
@@ -77,12 +82,17 @@ class AppointmentsController < ApplicationController
 
     def cleaner_update
         @cleaner = Cleaner.find(params[:cleaner_id])
-        appointment_ids = params["cleaner"].select{|key, value| value == "1"}.keys
-        appointment_ids.each do |appt_id| 
-            appt = Appointment.find(appt_id)
-            appt.update(status: Appointment::STATUS[2])
+        @appointments = @cleaner.confirmed_appts
+        if params["cleaner"].values.any? {|value| value == "1"}
+            appointment_ids = params["cleaner"].select{|key, value| value == "1"}.keys
+            appointment_ids.each do |appt_id| 
+                appt = Appointment.find(appt_id)
+                appt.update(status: Appointment::STATUS[2])
+            end
+            redirect_to "/cleaners/#{@cleaner.id}/appointments/completed"
+        else
+            render :cleaner_index
         end
-        redirect_to "/cleaners/#{@cleaner.id}/appointments/completed"
     end
 
     def cleaner_destroy

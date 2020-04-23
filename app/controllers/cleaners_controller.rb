@@ -5,6 +5,10 @@ class CleanersController < ApplicationController
     @cleaner = Cleaner.new
   end
 
+  def index
+    redirect_to new_cleaner_path
+  end
+
   def create
     @institution = Institution.find_or_create_by(name: params[:cleaner][:institution_name])
     @cleaner = current_user.build_cleaner(cleaner_params)

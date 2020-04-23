@@ -30,6 +30,7 @@ class MessagesController < ApplicationController
         if @message.save
             redirect_to conversation_messages_path(@conversation)
         else
+            @messages = @conversation.messages.select{|msg| Message.exists?(msg.id)}
             render :index
         end
     end

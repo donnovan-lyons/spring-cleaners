@@ -1,71 +1,88 @@
 <% content_for :title, "Customer Sign Up" %>
 
 <% if @customer.errors.any? %>
-<div class="ui error message center">
-  <i class="close icon"></i>
-  <div class="header">
-    There <%= @user.errors.count > 1 ? "are" : "is" %> <%= pluralize(@user.errors.count, "error") %> with your submission
+  <div class="ui error message center">
+    <i class="close icon"></i>
+    <div class="header">
+      There <%= @customer.errors.count > 1 ? "are" : "is" %> <%= pluralize(@customer.errors.count, "error") %> with your submission
+    </div>
+    <ul class="list">
+      <% @customer.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
   </div>
-  <ul class="list">
-    <% @user.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-  </ul>
-</div>
 <% end %>
 
 <div class="ui middle aligned center aligned grid">
 
   <div class="column">
     
-
-    <h2 class="ui teal image header">
-      <%= image_tag 'spring-cleaners-logos/profile.png', alt: 'default', class: 'ui fluid image' %>
-      <div class="content">
-        Cleaner Information
-      </div>
-    </h2>
-    
     <%= form_with model: @customer, class: "ui form", local: true do |f| %>
+
+      
 
       <div class="ui segment">
 
-        <div class="two fields">
+        <h2 class="ui teal image header">
+          <%= image_tag 'spring-cleaners-logos/profile.png', alt: 'default', class: 'ui fluid image' %>
+          <div class="content">
+            Customer Information Sign Up
+          </div>
+        </h2>
+        
 
+        <div class="field">
+        
           <%= f.label :name %>
-          
-          <div class="field">
-            <%= f.text_field :first_name, :placeholder => 'First name' %>
-          </div>
 
-          <div class="field">
-            <%= f.text_field :last_name, :placeholder => 'Last name' %>
-          </div>
+          <div class="two fields">
 
+            <div class="field">
+              <%= f.text_field :first_name, :placeholder => 'First name' %>
+            </div>
+
+            <div class="field">
+              <%= f.text_field :last_name, :placeholder => 'Last name' %>
+            </div>
+
+          </div>
         </div>
 
         <div class="field">
+
           <%= f.label :phone %>
-          <%= f.telephone_field :phone, :placeholder => 'Phone' %>
+
+          <div class="fields">
+
+            <div class="six wide field">
+            <%= f.telephone_field :phone, :placeholder => 'Phone' %>
+            </div>
+
+          </div>
+          
         </div>
 
         <%= f.fields_for :address do |addr| %>
 
           <div class="twelve wide field">
             <%= addr.label :street_address %>
-            <%= addr.text_field :street_address %>
+            <%= addr.text_field :street_address, :placeholder => 'Street address' %>
           </div>
 
           <div class="two fields">
 
-            <%= addr.label :neighborhood %>
             <div class="field">
-              <%= addr.text_field :neighborhood %>
+              <%= addr.label :neighborhood %>
+              <div class="field">
+                <%= addr.text_field :neighborhood, :placeholder => 'Neighborhood' %>
+              </div>
             </div>
-              
-            <%= addr.label :city %>
             <div class="field">
-              <%= addr.text_field :city %>
+              <%= addr.label :city %>
+              <div class="field">
+                <%= addr.text_field :city, :placeholder => 'City' %>
+              </div>
             </div>
               
           </div>

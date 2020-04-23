@@ -15,8 +15,8 @@ Rails.application.routes.draw do
   get 'cleaners/:cleaner_id/appointments/completed', to: 'appointments#cleaner_completed', as: 'cleaner_completed_appts'
   resources :users, only: [:index, :new, :create, :show]
   resources :sessions, only: [:new, :create, :destroy]
-  resources :cleaners, only: [:new, :create, :show] 
-  resources :customers, only: [:new, :create, :show] do
+  resources :cleaners, only: [:new, :index, :create, :show] 
+  resources :customers, only: [:new, :index, :create, :show] do
     resources :appointments, shallow: true
   end
   resources :conversations do

@@ -28,7 +28,7 @@ $(document).on('turbolinks:load', function(){
                .trigger('pagescript:' + '*#' + data.action , data);
   });
 
-  // A specific controller_name and action
+  // For specifics controller_name and action
 $(document).on('pagescript:appointments#edit', (e) => {
     $('#standard_calendar').calendar();
     $('#time_calendar').calendar({type: 'time'});

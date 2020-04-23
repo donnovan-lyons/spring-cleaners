@@ -4,8 +4,12 @@
 
 body.customers {
 
+    div.field {
+        text-align: left;
+    }
+
     .column {
-        max-width: 550px;
+        max-width: 500px;
     }
     
     .grid {

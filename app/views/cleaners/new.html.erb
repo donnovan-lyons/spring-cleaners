@@ -1,38 +1,43 @@
 <% content_for :title, "Cleaner Sign Up" %>
+
 <% if @cleaner.errors.any? %>
 <div class="ui error message center">
   <i class="close icon"></i>
   <div class="header">
-    There <%= @user.errors.count > 1 ? "are" : "is" %> <%= pluralize(@user.errors.count, "error") %> with your submission
+    There <%= @cleaner.errors.count > 1 ? "are" : "is" %> <%= pluralize(@cleaner.errors.count, "error") %> with your submission
   </div>
   <ul class="list">
-    <% @user.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
+    <% @cleaner.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
     <% end %>
   </ul>
 </div>
 <% end %>
 
-<div class="ui middle aligned center aligned grid">
+
+<div class="ui middle center aligned grid">
 
   <div class="column">
     
-
-    <h2 class="ui teal image header">
-      <%= image_tag 'spring-cleaners-logos/profile.png', alt: 'default', class: 'ui fluid image' %>
-      <div class="content">
-        Cleaner Information
-      </div>
-    </h2>
-    
     <%= form_with model: @cleaner, class: "ui form", local: true do |f| %>
+
+      
 
       <div class="ui segment">
 
+      <h2 class="ui teal image header">
+        <%= image_tag 'spring-cleaners-logos/profile.png', alt: 'default', class: 'ui fluid image' %>
+        <div class="content">
+          Cleaner Information Sign Up
+        </div>
+      </h2>
+
+      <div class="field">
+      
+        <%= f.label :name %>
+
         <div class="two fields">
 
-          <%= f.label :name %>
-          
           <div class="field">
             <%= f.text_field :first_name, :placeholder => 'First name' %>
           </div>
@@ -42,40 +47,51 @@
           </div>
 
         </div>
+      </div>
 
-        <div>
+      <div class="two fields">
+
+        <div class="field">
           <%= f.label :phone %>
           <%= f.telephone_field :phone, :placeholder => 'Phone' %>
         </div>
 
-        <div>
+        <div class="field">
           <%= f.label :whatsapp %>
           <%= f.telephone_field :whatsapp, :placeholder => 'Whatsapp' %>
         </div>
 
+      </div>
+
+      <div class="field">
+        <%= f.fields_for :address do |addr| %>
         <div class="two fields">
 
-          <%= f.fields_for :address do |addr| %>
           
+            <div class="field">
             <%= addr.label :neighborhood %>
             <div class="field">
-              <%= addr.text_field :neighborhood %>
+              <%= addr.text_field :neighborhood, :placeholder => 'Neighborhood' %>
             </div>
-            
+            </div>
+            <div class="field">
             <%= addr.label :city %>
             <div class="field">
-              <%= addr.text_field :city %>
+              <%= addr.text_field :city, :placeholder => 'City' %>
+            </div>
             </div>
 
           <% end %>
 
         </div>
 
+      </div>
+      <div class="field">
         <%= f.label :institution_name %>
 
         <div class="field">
           
-          <%= f.text_field :institution_name, list: "institutions_autocomplete" %>
+          <%= f.text_field :institution_name, :placeholder => 'Institution Name', list: "institutions_autocomplete" %>
           <datalist id="institutions_autocomplete">
             <% Institution.all.each do |yeshiva| %>
               <option value="<%= yeshiva.name %>">
@@ -83,6 +99,7 @@
           </datalist>
 
         </div>
+      </div>
 
         <%= f.submit "Submit", :class => "ui fluid large teal submit button" %>
       </div>
