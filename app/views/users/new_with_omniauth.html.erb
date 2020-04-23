@@ -1,0 +1,53 @@
+<% content_for :title, "Sign Up" %>
+<% if @user.errors.any? %>
+<div class="ui error message center">
+  <i class="close icon"></i>
+  <div class="header">
+    There <%= @user.errors.count > 1 ? "are" : "is" %> <%= pluralize(@user.errors.count, "error") %> with your submission
+  </div>
+  <ul class="list">
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<div class="ui middle aligned center aligned grid">
+
+  <div class="column">
+
+    <h2 class="ui teal image header">
+      <%= image_tag 'spring-cleaners-logos/profile.png', alt: 'default', class: 'ui fluid image' %>
+      <div class="content">
+        Sign Up
+      </div>
+    </h2>
+
+    <%= form_with model: @user, url: oauth_users_path, class: "ui large form", local: true do |f| %>
+
+      <div class="ui stacked segment">
+        <%= "Welcome #{@first_name}."%>
+        <%= f.text_field :email, value: @user.email, type: "hidden" %>
+
+        <div class="field">
+          <%= f.label "Are you a cleaner or customer?" %>
+          <div class="ui left icon input">
+            <%= f.select :sub_class, User::SUB_CLASSES, :class => "ui fluid dropdown",include_blank: true %>
+          </div>
+        </div>
+        
+        <%= f.submit "Next", :class => "ui large teal submit button" %>
+
+      </div>
+
+      <div class="ui error message"></div>
+      
+      <div class="ui segment">Part 1 of 2</div>
+
+     
+    <% end %>
+
+  </div>
+
+</div>

@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get 'signup', to: 'users#new'
   # get '/auth/facebook/callback' => 'sessions#facebook'
   get '/auth/google_oauth2/callback' => 'sessions#omniauthgoogle'
+  get 'oauth_signup', to: 'users#new_with_omniauth', as: 'new_with_omniauth'
+  post 'oauth_users', to: 'users#create_with_omniauth', as: 'oauth_users'
   post 'login', to: 'sessions#create'
   get 'logout', to: 'sessions#destroy'
   get 'cleaners/:cleaner_id/appointments/new', to: 'appointments#cleaner_new', as: 'new_cleaner_appointment'

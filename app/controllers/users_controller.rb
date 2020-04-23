@@ -6,11 +6,7 @@ class UsersController < ApplicationController
   end
   
   def new
-    if params[:email]
-      @user = User.new(email: params[:email])
-    else
-      @user = User.new
-    end
+    @user = User.new
     render :layout => "beforelogin"
   end
 
@@ -40,6 +36,32 @@ class UsersController < ApplicationController
   def my_account
     
   end
+
+  def new_with_omniauth
+    # raise params.inspect
+    @user = User.new(email: params[:email])
+    @first_name = params[:first_name]
+    render :layout => "beforelogin"
+  end
+
+  def create_with_omniauth
+    # raise params.inspect
+    @user = User.new(email: params[:user][:email], password: SecureRandom.hex, sub_class: params[:user][:sub_class])
+    if @user.save
+      session[:user_id] = @user.id
+      if @user.sub_class == "Cleaner"
+        redirect_to new_cleaner_path
+      else
+        redirect_to new_customer_path
+      end
+    else
+      render :new_with_omniauth, :layout => "beforelogin"
+      flash[:alert] = "Your registration could not be completed"
+    end
+  end
+
+
+  
 
   private
 
