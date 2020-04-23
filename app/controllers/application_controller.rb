@@ -1,25 +1,11 @@
 class ApplicationController < ActionController::Base
     before_action :require_login
 
-  def logged_in?
-    !!session[:user_id]
-  end
+  private
 
   def current_user
-    @current_user ||= User.find(session[:user_id])
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
-
-  def authenticate_user
-    if !current_user
-      redirect_to root_path, notice: "You must be signed in to do that!"
-    end
-  end
-
-  # def authorized?(id)
-  #   current_user.id == id
-  # end 
-
-  private
 
   def require_login
     if session.include? :user_id
@@ -32,7 +18,7 @@ class ApplicationController < ActionController::Base
         end
       end
     else
-      redirect_to root_path
+      redirect_to root_path, notice: "You must be signed in to do that!"
     end
   end
 

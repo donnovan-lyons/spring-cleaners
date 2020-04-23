@@ -1,4 +1,4 @@
-<%= title("Sign Up") %>
+<% content_for :title, "Sign Up" %>
 <% if @user.errors.any? %>
 <div class="ui error message center">
   <i class="close icon"></i>
@@ -32,7 +32,7 @@
           <%= f.label :email %>
           <div class="ui left icon input">
             <i class="user icon"></i>
-            <%= f.email_field :email, :placeholder => 'E-mail address' %>
+            <%= f.email_field :email, :placeholder => 'E-mail address', :value => "#{@user.email}" %>
           </div>
         </div>
 
@@ -74,10 +74,10 @@
         <%= link_to "/auth/facebook", class: "ui circular facebook icon button" do %> 
           <i class="facebook icon"></i>  
         <% end %> 
-        <%= link_to "/auth/google", class: "ui circular google plus icon button" do %> 
+        <%= link_to "/auth/google_oauth2", class: "ui circular google plus icon button" do %> 
           <i class="google icon"></i>  
         <% end %> 
-        <%= link_to "/auth/amazon", class: "ui circular amazon grey icon button" do %> 
+        <%= link_to "#", class: "ui circular amazon grey icon button" do %> 
           <i class="amazon icon"></i>  
         <% end %>
 

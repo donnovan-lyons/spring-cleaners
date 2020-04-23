@@ -1,5 +1,5 @@
 class ConversationsController < ApplicationController
-    before_action :authenticate_user
+    before_action :require_login
     
     def index
         if current_user.sub_class == "Cleaner"

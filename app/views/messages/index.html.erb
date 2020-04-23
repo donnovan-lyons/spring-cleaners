@@ -21,6 +21,7 @@
         <% recipient = User.find(@conversation.sender_id) %>
       <% end %>
       Messages with <%= recipient.full_name %>
+      <% content_for :title, "Messages with #{recipient.full_name}" %>
     </div>
 </h2>
 

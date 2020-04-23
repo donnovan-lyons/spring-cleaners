@@ -30,4 +30,8 @@ class User < ApplicationRecord
         end
     end
 
+    def self.from_omniauth(auth)
+        where(email: auth.info.email).first
+    end
+
 end

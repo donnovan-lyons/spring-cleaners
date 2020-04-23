@@ -4,7 +4,7 @@ class WelcomeController < ApplicationController
     skip_before_action :require_login
 
     def homepage
-        if logged_in?
+        if current_user
             redirect_to user_path(current_user)
         else
             render :homepage

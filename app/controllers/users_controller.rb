@@ -6,7 +6,11 @@ class UsersController < ApplicationController
   end
   
   def new
-    @user = User.new
+    if params[:email]
+      @user = User.new(email: params[:email])
+    else
+      @user = User.new
+    end
     render :layout => "beforelogin"
   end
 
