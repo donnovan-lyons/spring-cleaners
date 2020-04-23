@@ -20,6 +20,7 @@
 // Loads all Semantic javascripts
 //= require semantic-ui
 
+// To enable page-specific JS
 $(document).on('turbolinks:load', function(){
     let data = $('body').data();
     // pagescript: is just the namespace for the events to avoid potential name collisions 
