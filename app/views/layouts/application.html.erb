@@ -36,7 +36,8 @@
     </div>
 
     <% flash.each do |type, msg| %>
-    <div class="ui <%= type == "notice" ? teal : error %> message">
+    <div class="ui <%= type == "notice" ? "teal" : "error" %> message">
+    <i class="close icon"></i>
         <%= msg %>
       </div>
     <% end %>

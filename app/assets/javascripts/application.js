@@ -27,7 +27,13 @@ $(document).on('turbolinks:load', function(){
     $(document).trigger('pagescript:' + data.controller + '#' + data.action, data)
                .trigger('pagescript:' + data.controller + '#*', data)
                .trigger('pagescript:' + '*#' + data.action , data);
-  });
+
+
+    $('.message .close').on('click', function() {
+        $(this).closest('.message').transition('fade');
+    });
+
+});
 
   // For specifics controller_name and action
 $(document).on('pagescript:appointments#edit', (e) => {

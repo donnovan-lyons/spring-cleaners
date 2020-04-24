@@ -19,6 +19,7 @@
   <body data-action="<%= action_name %>" data-controller="<%= controller_name %>" class="<%= controller_name %>">
     <% flash.each do |type, msg| %>
       <div class="ui <%= type == "notice" ? teal : error %> message">
+      <i class="close icon"></i>
         <%= msg %>
       </div>
     <% end %>
