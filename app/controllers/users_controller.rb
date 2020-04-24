@@ -21,7 +21,6 @@ class UsersController < ApplicationController
       end
     else
       render :new, :layout => "beforelogin"
-      flash[:alert] = "Your registration could not be completed"
     end
   end
 

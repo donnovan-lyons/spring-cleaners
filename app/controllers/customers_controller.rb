@@ -12,10 +12,9 @@ class CustomersController < ApplicationController
   def create
     @customer = current_user.build_customer(customer_params)
     if @customer.save
-      flash[:notice] = "Thanks for signing up!"
+      flash[:notice] = "Welcome to Spring Cleaners."
       redirect_to customer_path(@customer)
     else
-      flash[:alert] = "Your registration could not be completed"
       render :new
     end
   end

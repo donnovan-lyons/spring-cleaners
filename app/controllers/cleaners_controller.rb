@@ -14,11 +14,10 @@ class CleanersController < ApplicationController
     @cleaner = current_user.build_cleaner(cleaner_params)
     @cleaner.institution_id = @institution.id
     if @cleaner.save
-      flash[:notice] = "Thanks for signing up!"
+      flash[:notice] = "Welcome to Spring Cleaners."
       redirect_to cleaner_path(@cleaner)
     else
       render :new
-      flash[:alert] = "Your registration could not be completed"
     end
   end
 
