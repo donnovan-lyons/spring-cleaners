@@ -1,6 +1,6 @@
 # ![Spring Cleaners App](app/assets/images/spring-cleaners-logos/cover.png)
 
-Front and back end Ruby on Rails web app where non-professional cleaners can find customers who are able to setup appointments for somebody to clean their home through the app. `Customers` can create an appointment request, and `Cleaners` can view all unassigned appointments and assign/unassign them to themselves. Features:
+Front and back end Ruby on Rails web app where non-professional cleaners can find customers who are able to setup appointments for somebody to clean their home through the app. `Customers` can create an appointment request, and `Cleaners` can view all not yet assigned appointments and assign them to themselves or make them available again. Features:
 - standard, Google, and Facebook authentication
 - messaging between `Cleaner` and `Customer`
 <!-- - administration privileges to update user data in the application through the client -->
