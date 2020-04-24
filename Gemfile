@@ -44,7 +44,7 @@ gem 'omniauth-google-oauth2'
 # Use Fomantic UI, converted to SASS, for development framework for Frontend
 gem 'fomantic-ui-sass'
 
-# Use jquery
+# For use of jquery JavaScript library
 gem 'jquery-rails'
 
 
