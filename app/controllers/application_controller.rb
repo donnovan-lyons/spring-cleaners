@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
         end
       end
     else
-      redirect_to root_path, notice: "You must be signed in to do that!"
+      redirect_to root_path, notice: "Log In Required. Please Log In to Continue."
     end
   end
 

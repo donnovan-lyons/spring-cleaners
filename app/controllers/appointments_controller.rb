@@ -60,8 +60,7 @@ class AppointmentsController < ApplicationController
 
     def cleaner_new
         @cleaner = Cleaner.find(params[:cleaner_id])
-        @appointment = @cleaner.appointments.build
-        @appointments = Appointment.all_pending
+        @appointments = Appointment.all_pending.sort_by {|appt| appt.date}
     end
 
     def cleaner_create
@@ -75,14 +74,14 @@ class AppointmentsController < ApplicationController
             redirect_to "/cleaners/#{@cleaner.id}/appointments"
         else
             @appointment = @cleaner.appointments.build
-            @appointments = Appointment.all_pending
+            @appointments = Appointment.all_pending.sort_by {|appt| appt.date}
             render :cleaner_new
         end
     end
 
     def cleaner_update
         @cleaner = Cleaner.find(params[:cleaner_id])
-        @appointments = @cleaner.confirmed_appts
+        @appointments = @cleaner.confirmed_appts.sort_by {|appt| appt.date}
         if params["cleaner"].values.any? {|value| value == "1"}
             appointment_ids = params["cleaner"].select{|key, value| value == "1"}.keys
             appointment_ids.each do |appt_id| 
@@ -104,7 +103,7 @@ class AppointmentsController < ApplicationController
 
     def cleaner_completed
         @cleaner = Cleaner.find(params[:cleaner_id])
-        @appointments = @cleaner.completed_appts
+        @appointments = @cleaner.completed_appts.sort_by {|appt| appt.date}
     end
 
     private
