@@ -25,6 +25,6 @@
   <%= f.text_field :sender_id, value: current_user.id, type: "hidden" %>
   <%= f.text_field :recipient_id, value: @conversation.recipient_id, type: "hidden" %>
  <div>
-   <%= f.submit "Send Message", class: "ui blue labeled submit icon button" %>
+   <%= f.submit "Send Message", class: "ui teal submit button" %>
  </div>
 <% end %>
