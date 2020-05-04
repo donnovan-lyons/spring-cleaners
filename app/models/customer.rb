@@ -3,7 +3,7 @@ class Customer < ApplicationRecord
     validates :first_name, :last_name, length: { minimum: 2 }
    
     belongs_to :user
-    has_many :appointments
+    has_many :appointments, dependent: :destroy
     has_many :cleaners, through: :appointments
 
     delegate :email, :password_digest, :to => :user
